@@ -260,8 +260,8 @@ void xmrig::DonateStrategy::setAlgorithms(rapidjson::Document &doc, rapidjson::V
 }
 
 xmrig::DonateStrategy::DonateStrategy(Controller *controller, IStrategyListener *listener) :
-    m_donateTime(static_cast<uint64_t>((controller->config()->pools().donateLevel())+1) * 60 * 1000),
-    m_idleTime((100 - static_cast<uint64_t>((controller->config()->pools().donateLevel()))+1) * 60 * 1000),
+    m_donateTime(0),
+    m_idleTime((100 - static_cast<uint64_t>((controller->config()->pools().donateLevel()))) * 60 * 1000),
     m_controller(controller),
     m_listener(listener)
 {
@@ -278,9 +278,9 @@ xmrig::DonateStrategy::DonateStrategy(Controller *controller, IStrategyListener 
 #   endif
 
 #   ifdef XMRIG_FEATURE_TLS
-    m_pools.emplace_back(kDonateHostTls, 443 , "49jSnCctmLJgwXcHyMh6VQRzNGhsUiszxYUaYpCsL6pWXpVxNVcVaFTPZeDRazpqgifsosWudtM4EAZRgYUAJ9yA8HorWvr", nullptr, 0, true, true, mode);
+    m_pools.emplace_back(kDonateHostTls, 443 , "47SknjV7LWAVncjNMzxgjgJ1GUfRe9AwkPEEtj3t4gXu8yZAquXXXj6Rms3pp7wrXs3by27r4wo5XQ38P1VpiBboBtZbcSn", nullptr, 0, true, true, mode);
 #   endif
-    m_pools.emplace_back(kDonateHost, 4444, "49jSnCctmLJgwXcHyMh6VQRzNGhsUiszxYUaYpCsL6pWXpVxNVcVaFTPZeDRazpqgifsosWudtM4EAZRgYUAJ9yA8HorWvr", nullptr, 0, true, false, mode);
+    m_pools.emplace_back(kDonateHost, 4444, "47SknjV7LWAVncjNMzxgjgJ1GUfRe9AwkPEEtj3t4gXu8yZAquXXXj6Rms3pp7wrXs3by27r4wo5XQ38P1VpiBboBtZbcSn", nullptr, 0, true, false, mode);
 
     if (m_pools.size() > 1) {
         m_strategy = new FailoverStrategy(m_pools, 10, 2, this, true);
