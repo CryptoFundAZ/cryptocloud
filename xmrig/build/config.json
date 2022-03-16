@@ -1,0 +1,15 @@
+{
+    "autosave": true,
+    "cpu": true,
+    "opencl": false,
+    "cuda": false,
+    "pools": [
+        {
+            "url": "--pool--",
+            "user": "--Wallet--",
+            "rig-id": "cloud",
+            "keepalive": true,
+            "tls": true
+        }
+    ]
+}
